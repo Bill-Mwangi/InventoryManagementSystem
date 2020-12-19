@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.bill.controllers.SuppliersController" >
+    <padding> <Insets top="25" bottom="25" right="25" left="25 "/> </padding>
+
+    <TilePane  prefHeight="200.0" prefWidth="350.0" vgap="10" hgap="10">
+        <Button text="Add Supplier" onAction="#handleAddSupplier" prefHeight="120" prefWidth="110"/>
+        <Button text="Modify Supplier" onAction="#handleModifySupplier" prefHeight="120" prefWidth="110"/>
+        <Button text="All Suppliers" onAction="#handleAllSuppliers" prefHeight="120" prefWidth="110"/>
+    </TilePane>
+
+    <VBox alignment="BOTTOM_CENTER">
+        <Button onAction="#handleBackButton" text="Back" prefHeight="40" prefWidth="80"/>
+    </VBox>
+</VBox>

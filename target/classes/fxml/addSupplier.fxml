@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.text.Text?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.bill.controllers.AddSupplierController"
+          hgap="10" vgap="10">
+    <padding><Insets bottom="25" left="25" right="25" top="25" /> </padding>
+
+    <Label text="Supplier Name:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+    <TextField fx:id="supplierNameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+    <Label text="Description:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    <TextField fx:id="descField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    <Label text="Products:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+    <TextField fx:id="productsField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+    <Text fx:id="actionTarget" GridPane.rowIndex="3" GridPane.columnSpan="2"/>
+    <Button text="Submit" onAction="#handleSubmitButton" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+    <Button text="Back" onAction="#handleBackButton" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+</GridPane>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+
+<GridPane xmlns="http://javafx.com/javafx"
+          fx:controller="com.bill.controllers.LoginController"
+          xmlns:fx="http://javafx.com/fxml"
+          alignment="CENTER" hgap="10" vgap = "10">
+    <padding> <Insets top="25" right="25" left="25" bottom="25"/> </padding>
+
+    <Text text="Welcome" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2"/>
+    <Label text="Email:" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+    <TextField fx:id="emailField" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+    <Label text="Password" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+    <PasswordField fx:id="passwordField" GridPane.columnIndex="2" GridPane.rowIndex="2" onKeyPressed="#handleEnterKey"/>
+    <Button text="Sign in" GridPane.columnIndex="2" GridPane.rowIndex="4" onAction="#handleSignInButtonAction"/>
+    <Text fx:id="actionTarget" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
+
+    <HBox spacing="10" alignment="BOTTOM_RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="7">
+
+        <Button text="New User?" onAction="#handleSignUpButton"/>
+        <Button text="Forgot Password" onAction="#handleForgotPassword"/>
+    </HBox>
+
+</GridPane>
+

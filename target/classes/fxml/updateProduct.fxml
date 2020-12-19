@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.geometry.Insets?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.bill.controllers.UpdateProductController"
+          hgap="10" vgap="10">
+    <padding><Insets bottom="25" left="25" right="25" top="25" /> </padding>
+
+    <Text text="Adding to an existing product" GridPane.rowIndex="0"
+          GridPane.columnSpan="2"/>
+    <Label text="Product name:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+    <TextField GridPane.rowIndex="3" GridPane.columnIndex="1" prefHeight="1"/>
+    <Label text="Description:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+    <TextField GridPane.rowIndex="4" GridPane.columnIndex="1" prefHeight="1"/>
+    <Label text="Quantity:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+    <TextField GridPane.rowIndex="5" GridPane.columnIndex="1" prefHeight="1"/>
+    <Label text="Supplier ID:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+    <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" prefHeight="1"/>
+    <Button text="submit" alignment="CENTER" GridPane.columnIndex="0"
+            GridPane.rowIndex="7" onAction="#handleSubmitButton"/>
+    <Button text="Back" GridPane.rowIndex="7" GridPane.columnIndex="1"
+            onAction="#handleBackButton"/>
+    <Text fx:id="confirmation" GridPane.rowIndex="7" GridPane.columnSpan="2"/>
+</GridPane>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bill.controllers.IndexController">
+    <padding><Insets bottom="25" left="25" right="25" top="25" /> </padding>
+
+    <FlowPane alignment="TOP_CENTER" hgap="10" vgap="10" prefHeight="230">
+        <Text style="-fx-font: 16 arial; -fx-alignment: center" text="INVENTORY MANAGEMENT SYSTEM" textAlignment="CENTER" />
+
+        <Button onAction="#handleProductsButton" prefHeight="100" prefWidth="100" text="Products" />
+        <Button onAction="#handleSupplierButton" prefHeight="100" prefWidth="100" text="Suppliers" />
+        <Button onAction="#handleRecipientButton" prefHeight="100" prefWidth="100" text="Recipients" />
+    </FlowPane>
+
+    <VBox alignment="BOTTOM_CENTER" >
+      <Button onAction="#handleQuitButton" prefHeight="10" prefWidth="50" text="Quit" />
+    </VBox>
+
+</VBox>
