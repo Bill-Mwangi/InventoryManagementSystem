@@ -10,7 +10,7 @@
 
     <TableView fx:id="allRecipientsTable">
         <columns>
-            <TableColumn text="Recipient ID" prefWidth="80" fx:id="recipientID"/>
+            <TableColumn text="Recipient ID" fx:id="recipientID"/>
             <TableColumn text="First Name" prefWidth="120" fx:id="firstName"/>
             <TableColumn text="Last Name" prefWidth="120" fx:id="lastName"/>
             <TableColumn text="Department" prefWidth="223" fx:id="department"/>

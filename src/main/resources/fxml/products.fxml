@@ -11,11 +11,11 @@
     <FlowPane prefHeight="300.0" prefWidth="400.0" vgap="10" hgap="10">
 
         <Button onAction="#addProduct" text="New Product" prefWidth="120" prefHeight="120"/>
-        <Button onAction="#updateProduct" text="Update Product" prefWidth="120" prefHeight="120"/>
-        <Button onAction="#assignProduct" text="Assign Product" prefWidth="130" prefHeight="120"/>
+        <Button onAction="#updateProduct" text="Update Product" prefWidth="130" prefHeight="120"/>
+        <Button onAction="#assignProduct" text="Assign Product" prefWidth="120" prefHeight="120"/>
         <Button onAction="#availableProducts" text="Available products" prefWidth="120" prefHeight="120"/>
-        <Button onAction="#allProducts" text="All products" prefWidth="120" prefHeight="120"/>
         <Button onAction="#unavailableProducts" text="Unavailable products" prefWidth="130" prefHeight="120"/>
+        <Button onAction="#assignedProducts" text="Assigned products" prefWidth="120" prefHeight="120"/>
     </FlowPane>
 
     <VBox alignment="BOTTOM_CENTER">
