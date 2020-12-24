@@ -1,5 +1,6 @@
 package com.bill.controllers;
 
+import com.bill.DatabaseAccess;
 import com.bill.interfaces.Connect;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
@@ -32,8 +33,10 @@ public class LoginController extends WindowSetter implements Connect {
 
             if (resultSet.next()) {
                 String userPassHash = DigestUtils.sha256Hex(passwordField.getText());
-                if (userPassHash.equalsIgnoreCase(resultSet.getString("Password")))
+                if (userPassHash.equalsIgnoreCase(resultSet.getString("Password"))) {
                     setWindow("/fxml/index.fxml", "Inventory Management System");
+                    DatabaseAccess.startConnection();
+                }
                 else actionTarget.setText("Invalid password");
             } else
                 actionTarget.setText("Invalid email");

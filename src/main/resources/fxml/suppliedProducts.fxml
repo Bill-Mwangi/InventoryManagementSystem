@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.bill.controllers.SuppliedProductsController">
+<padding><Insets bottom="25" left="25" right="25" top="25" /> </padding>
+
+<TableView fx:id="suppliedProductsTable" >
+    <columns>
+        <TableColumn text="Product" fx:id="product_name" prefWidth="150"/>
+        <TableColumn text="Supplier" fx:id="supplier_name" prefWidth="100"/>
+        <TableColumn text="Quantity" fx:id="quantity" prefWidth="100"/>
+        <TableColumn text="Date" fx:id="date" prefWidth="100"/>
+        <TableColumn text="Time" fx:id="time" prefWidth="100"/>
+    </columns>
+
+</TableView>
+
+<VBox alignment="BOTTOM_CENTER">
+    <Button onAction="#handleBackButton" text="Back" prefHeight="40" prefWidth="80"/>
+</VBox>
+</VBox>

@@ -14,7 +14,6 @@ public class SuppliersController extends WindowSetter {
         setWindow("/fxml/index.fxml", "Inventory Management System");
     }
 
-    public void handleModifySupplier() {
-        //setWindow("/fxml/");
+    public void listSuppliedProducts() {setWindow(600, 500, "/fxml/suppliedProducts.fxml", "Supplied Products");
     }
 }

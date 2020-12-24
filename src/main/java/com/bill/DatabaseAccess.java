@@ -1,8 +1,5 @@
 package com.bill;
 
-import com.bill.controllers.AddProductController;
-import com.bill.controllers.AddRecipientController;
-import com.bill.controllers.AddSupplierController;
 import com.bill.interfaces.Connect;
 import javafx.scene.control.Alert;
 
@@ -15,37 +12,40 @@ public class DatabaseAccess implements Connect {
     private static PreparedStatement unavailableProducts = null;
     private static PreparedStatement availableProducts = null;
     private static PreparedStatement updateSupplyQuantity = null;
-    private static PreparedStatement updateProductCount = null;
+    private static CallableStatement updateProduct = null;
     private static PreparedStatement productCount = null;
     private static PreparedStatement insertNewRecipient = null;
     private static PreparedStatement insertNewSuppliers = null;
-    private static PreparedStatement insertNewProducts = null;
+    private static CallableStatement insertNewProducts = null;
     private static PreparedStatement selectAllRecipients = null;
     private static Connection con = null;
     private static PreparedStatement selectAssignedProducts = null;
     private static PreparedStatement selectAllSuppliers = null;
-    private static PreparedStatement assignProcedure = null;
+    private static CallableStatement assignProcedure = null;
     private static ResultSet resultSet = null;
     private static boolean isConnected = false;
     private static int rowsAffected;
+    private static String message;
+    private static PreparedStatement selectSuppliedProducts;
 
-    public DatabaseAccess() {
+    public static void startConnection() {
         try {
             con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             isConnected = true;
             con.createStatement();
             selectAssignedProducts = con.prepareStatement("SELECT * FROM inventory.assigned_view");
+            selectSuppliedProducts = con.prepareStatement("SELECT * FROM inventory.supplied_view");
             selectAllSuppliers = con.prepareStatement("SELECT * FROM inventory.supplier");
             selectAllRecipients = con.prepareStatement("SELECT * FROM inventory.recipient");
-            insertNewProducts = con.prepareStatement("INSERT INTO inventory.product(product_id, product_name, quantity, description, supplier_id) VALUES(?, ?, ?, ?, ?)");
+            insertNewProducts = con.prepareCall("{CALL add_product(?, ?, ?, ?)}");
             insertNewSuppliers = con.prepareStatement("INSERT INTO inventory.supplier(supplier_name, description, products) VALUES( ?,?,?)");
             insertNewRecipient = con.prepareStatement("INSERT INTO inventory.recipient(first_name, last_name, department) VALUES(?, ?, ?)");
             productCount = con.prepareStatement("SELECT quantity FROM inventory.product WHERE product_id = ?");
-            updateProductCount = con.prepareStatement("UPDATE inventory.product SET quantity = ? WHERE product_id = ?");
+            updateProduct = con.prepareCall("{CALL update_product(?, ?, ?, ?)}");
             updateSupplyQuantity = con.prepareStatement("UPDATE inventory.supplier SET quantity = ? WHERE supplier_id = ?");
             availableProducts = con.prepareStatement("SELECT * FROM product WHERE quantity > 0");
             unavailableProducts = con.prepareStatement("SELECT * FROM product WHERE quantity = 0");
-            assignProcedure = con.prepareStatement("CALL assign_product(?, ?, ?, ?);");
+            assignProcedure = con.prepareCall("{CALL assign_product(?, ?, ?, ?)}");
         } catch (SQLException exception) {
             errorAlerts("Database error", "Error connecting to database\n"+
                     exception.getMessage());
@@ -71,7 +71,26 @@ public class DatabaseAccess implements Connect {
         } catch (SQLException exception) {
             errorAlerts("Database error", "Error in getting list of assigned products\n"+
                     exception.getMessage());
-            
+        }
+        return results;
+    }
+    public static List<SuppliedProduct> getSuppliedProducts() {
+        if (!isConnected) {
+            databaseNotConnectedAlert();
+        }
+        List<SuppliedProduct> results = new ArrayList<>();
+        try {
+            resultSet = selectSuppliedProducts.executeQuery();
+            while (resultSet.next()) {
+                results.add(new SuppliedProduct(resultSet.getString("product_name"),
+                        resultSet.getString("supplier_name"),
+                        resultSet.getInt("quantity"),
+                        resultSet.getDate("date_supplied"),
+                        resultSet.getTime("date_supplied")));
+            }
+        } catch (SQLException exception) {
+            errorAlerts("Database error", "Error in getting list of assigned products\n" +
+                    exception.getMessage());
         }
         return results;
     }
@@ -115,35 +134,24 @@ public class DatabaseAccess implements Connect {
         }
         return results;
     }
-    public static void addProduct(Product product, int supplierID) throws IllegalStateException {
+    public static String addProduct(Product product, int supplierID) throws IllegalStateException {
         if (!isConnected) {
             databaseNotConnectedAlert();
         }
         try {
-            insertNewProducts.setString(1, null);
-            insertNewProducts.setString(2, product.getProductName());
+            insertNewProducts.setString(1, product.getProductName());
+            insertNewProducts.setString(2, product.getDescription());
             insertNewProducts.setInt(3, product.getQuantity());
-            insertNewProducts.setString(4, product.getDescription());
-            insertNewProducts.setInt(5, supplierID);
+            insertNewProducts.setInt(4, supplierID);
             rowsAffected = insertNewProducts.executeUpdate();
-            AddProductController.actionTarget.setText("Product added");
-           // supplyQuantity.setInt(1, supplierID);
-            //resultSet = supplyQuantity.executeQuery();
-//            if (resultSet.next()) {
-//                int supplyCount = resultSet.getInt("quantity");
-//                int newQuantity = supplyCount + product.getQuantity();
-//                updateSupplyQuantity.setInt(1, newQuantity);
-//                updateSupplyQuantity.setInt(2, supplierID);
-//                rowsAffected = updateSupplyQuantity.executeUpdate();
-//                JOptionPane.showMessageDialog(null, rowsAffected + " rows affected",
-//                        "Update Supplier Quantity", JOptionPane.PLAIN_MESSAGE);
-//            }
+            message = "Product added";
         } catch (SQLException exception){
             errorAlerts("Database error", "Error adding new product\n"+
                     exception.getMessage());
         }
+        return message;
     }
-    public static void addSupplier(Suppliers supplier) throws IllegalStateException {
+    public static String addSupplier(Suppliers supplier) throws IllegalStateException {
         if (!isConnected) {
             databaseNotConnectedAlert();
         }
@@ -152,14 +160,15 @@ public class DatabaseAccess implements Connect {
             insertNewSuppliers.setString(2,supplier.getDescription());
             insertNewSuppliers.setString(3,supplier.getProducts());
             rowsAffected = insertNewSuppliers.executeUpdate();
-            AddSupplierController.actionTarget.setText("Supplier added");
+            message = "Supplier added";
         } catch (SQLException exception){
             errorAlerts("Database error", "Error adding new supplier\n"+
                     exception.getMessage());
             
         }
+        return message;
     }
-    public static void addRecipients(Recipient recipient) throws IllegalStateException {
+    public static String addRecipients(Recipient recipient) throws IllegalStateException {
         if (!isConnected) {
             databaseNotConnectedAlert();
         }
@@ -168,13 +177,14 @@ public class DatabaseAccess implements Connect {
             insertNewRecipient.setString(2, recipient.getLastName());
             insertNewRecipient.setString(3, recipient.getDepartment());
             rowsAffected = insertNewRecipient.executeUpdate();
-            AddRecipientController.actionTarget.setText("Recipient added");
+            message = "Recipient added";
         } catch (SQLException exception){
             errorAlerts("Database error", "Error adding new recipient\n"+
                     exception.getMessage());
         }
+        return message;
     }
-    public static void updateProducts(int productID, int quantity) {
+    public static String updateProducts(int productID, int quantity, int supplierID) {
         if (!isConnected) {
             databaseNotConnectedAlert();
         }
@@ -184,19 +194,20 @@ public class DatabaseAccess implements Connect {
             if (resultSet.next()) {
                 int availableQuantity = resultSet.getInt("quantity");
                 int newQuantity = quantity + availableQuantity;
-                updateProductCount.setInt(1, newQuantity);
-                updateProductCount.setInt(2, productID);
-                rowsAffected = updateProductCount.executeUpdate();
-                JOptionPane.showMessageDialog(null, rowsAffected + " rows affected",
-                        "Update Product", JOptionPane.PLAIN_MESSAGE);
+                updateProduct.setInt(1, productID);
+                updateProduct.setInt(2, supplierID);
+                updateProduct.setInt(3, quantity);
+                updateProduct.setInt(4, newQuantity);
+                rowsAffected = updateProduct.executeUpdate();
+                message = rowsAffected +" product has been updated.";
             }
         } catch (SQLException exception) {
             errorAlerts("Database Error", "Error updating products\n"+
                     exception.getMessage());
         }
+        return message;
     }
     public static String assignProduct(int productID, int recipientID, int quantity) {
-        String message = "";
         if (!isConnected) {
             databaseNotConnectedAlert();
         }
@@ -274,6 +285,7 @@ public class DatabaseAccess implements Connect {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
     private void plainMessageAlerts(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -287,7 +299,7 @@ public class DatabaseAccess implements Connect {
                 unavailableProducts.close();
                 availableProducts.close();
                 updateSupplyQuantity.close();
-                updateProductCount.close();
+                updateProduct.close();
                 productCount.close();
                 insertNewRecipient.close();
                 insertNewSuppliers.close();

@@ -22,7 +22,7 @@ public class WindowSetter extends Application {
 
     @Override
     public void start(Stage stage) {
-        DatabaseAccess a = new DatabaseAccess();
+        DatabaseAccess.startConnection();
         setWindow("/fxml/login.fxml", "Inventory Management System");
     }
 

@@ -8,13 +8,14 @@ import javafx.scene.text.Text;
 
 
 public class AddSupplierController extends WindowSetter {
-    @FXML public static Text actionTarget;
+    @FXML private Text actionTarget;
     @FXML TextField supplierNameField;
     @FXML TextField descField;
     @FXML TextField productsField;
 
     public void handleSubmitButton() {
-        DatabaseAccess.addSupplier(new Suppliers(supplierNameField.getText(), descField.getText(),productsField.getText()));
+       String message =  DatabaseAccess.addSupplier(new Suppliers(supplierNameField.getText(), descField.getText(),productsField.getText()));
+       actionTarget.setText(message);
     }
 
     public void handleBackButton() {
