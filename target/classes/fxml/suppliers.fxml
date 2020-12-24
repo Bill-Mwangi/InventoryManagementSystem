@@ -10,7 +10,7 @@
 
     <TilePane  prefHeight="200.0" prefWidth="350.0" vgap="10" hgap="10">
         <Button text="Add Supplier" onAction="#handleAddSupplier" prefHeight="120" prefWidth="110"/>
-        <Button text="Modify Supplier" onAction="#handleModifySupplier" prefHeight="120" prefWidth="110"/>
+        <Button text="Supplied Products" onAction="#listSuppliedProducts" prefHeight="120" prefWidth="110"/>
         <Button text="All Suppliers" onAction="#handleAllSuppliers" prefHeight="120" prefWidth="110"/>
     </TilePane>
 
