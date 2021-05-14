@@ -5,7 +5,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
-public class UpdateProductController extends WindowSetter {
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+public class UpdateProductController extends WindowSetter implements KeyListener {
     @FXML TextField productIdField;
     @FXML TextField quantityField;
     @FXML TextField supplierIDField;
@@ -20,6 +23,24 @@ public class UpdateProductController extends WindowSetter {
     }
 
     public void handleBackButton() {
-        setWindow(450, 390, "/fxml/products.fxml", "Products Menu");
+        setWindow("/fxml/products.fxml", "Products Menu");
+    }
+
+    @Override
+    public void keyTyped(KeyEvent event) {
+        String str = "";
+        str += event.getKeyChar();
+        String query = "SELECT * FROM  WHERE LIKE " + str + " LIMIT 5;";
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }

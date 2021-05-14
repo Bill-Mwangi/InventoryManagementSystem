@@ -23,6 +23,6 @@ public class AssignProductController extends WindowSetter {
         confirmation.setText(conf);
     }
 
-    public void handleBackButton() { setWindow(450, 390, "/fxml/products.fxml", "Products Menu");
+    public void handleBackButton() { setWindow("/fxml/products.fxml", "Products Menu");
     }
 }

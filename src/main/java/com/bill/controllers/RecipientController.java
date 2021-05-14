@@ -2,11 +2,11 @@ package com.bill.controllers;
 
 public class RecipientController extends WindowSetter {
     public void handleAddRecipient() {
-        setWindow("/fxml/addRecipient.fxml", "New recipient");
+        setWindow( "/fxml/addRecipient.fxml", "New recipient");
     }
 
     public void handleAllRecipients() {
-        setWindow(600,500,"/fxml/allRecipients.fxml", "Recipients List");
+        setWindow(700, 700,"/fxml/allRecipients.fxml", "Recipients List");
     }
 
     public void handleEditRecipient() {

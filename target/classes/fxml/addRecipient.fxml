@@ -2,21 +2,20 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.text.Text?>
-<GridPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-          fx:controller="com.bill.controllers.AddRecipientController"
-          hgap="10" vgap="10">
-    <padding> <Insets top="30" bottom="30" right="30" left="30 "/> </padding>
 
-    <Label text="First Name:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-    <TextField fx:id="firstNameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-    <Label text="Last Name:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-    <TextField fx:id="lastNameField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-    <Label text="Department:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-    <TextField fx:id="deptField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-    <Text fx:id="actionTarget" GridPane.rowIndex="4" GridPane.columnSpan="2"/>
-    <Button text="Submit" onAction="#handleSubmitButton" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
-    <Button text="Back" GridPane.rowIndex="5" GridPane.columnIndex="0" onAction="#handleBackButton"/>
-</GridPane>
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.bill.controllers.AddRecipientController" styleClass="root" stylesheets="@../css/styles.css">
+
+    <GridPane styleClass="form">
+        <Label text="First Name:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <TextField fx:id="firstNameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <Label text="Last Name:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <TextField fx:id="lastNameField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <Label text="Department:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <TextField fx:id="deptField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        <Text fx:id="actionTarget" GridPane.rowIndex="4" GridPane.columnSpan="2"/>
+        <Button text="Submit" onAction="#handleSubmitButton" GridPane.columnIndex="1" GridPane.rowIndex="5" styleClass="backButton"/>
+        <Button text="Back" GridPane.rowIndex="5" GridPane.columnIndex="0" onAction="#handleBackButton" styleClass="backButton"/>
+    </GridPane>
+</VBox>

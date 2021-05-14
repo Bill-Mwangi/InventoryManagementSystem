@@ -2,16 +2,11 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.scene.text.Text?>
-<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" styleClass="root"
+      fx:controller="com.bill.controllers.AssignProductController" stylesheets="@../css/styles.css">
 
-
-    <GridPane prefHeight="200.0" prefWidth="300.0" hgap="10" vgap="10"
-              xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-              fx:controller="com.bill.controllers.AssignProductController">
-    <padding><Insets bottom="25" right="25" left="25" top="25"/> </padding>
-
+    <GridPane styleClass="form">
         <Label text="Product ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
         <TextField fx:id="productIDField" GridPane.columnIndex="1" GridPane.rowIndex="0" prefHeight="1"/>
         <Label text="Recipient ID:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
@@ -19,10 +14,11 @@
         <Label text="Quantity:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
         <TextField fx:id="quantityField" GridPane.rowIndex="2" GridPane.columnIndex="1" prefHeight="1"/>
         <Button text="submit" alignment="CENTER" GridPane.columnIndex="1"
-                GridPane.rowIndex="5" onAction="#handleSubmitButton"/>
+                GridPane.rowIndex="5" onAction="#handleSubmitButton" styleClass="backButton"/>
         <Button onAction="#handleBackButton" text="Back" alignment="CENTER" GridPane.columnIndex="0"
-                GridPane.rowIndex="5"/>
+                GridPane.rowIndex="5" styleClass="backButton"/>
         <Text fx:id="confirmation" GridPane.rowIndex="4" GridPane.columnSpan="2"/>
-
     </GridPane>
+
+</VBox>
 

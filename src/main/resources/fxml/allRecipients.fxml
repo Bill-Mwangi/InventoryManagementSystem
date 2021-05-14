@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
-
+<?import javafx.scene.layout.VBox?>
 <VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.bill.controllers.AllRecipientsController">
-    <padding><Insets bottom="25" left="25" right="25" top="25" /> </padding>
+      fx:controller="com.bill.controllers.AllRecipientsController" stylesheets="@../css/styles.css"
+      styleClass="root">
 
-    <TableView fx:id="allRecipientsTable">
+    <TableView fx:id="allRecipientsTable" styleClass="table">
         <columns>
-            <TableColumn text="Recipient ID" fx:id="recipientID"/>
-            <TableColumn text="First Name" prefWidth="120" fx:id="firstName"/>
-            <TableColumn text="Last Name" prefWidth="120" fx:id="lastName"/>
-            <TableColumn text="Department" prefWidth="223" fx:id="department"/>
+            <TableColumn text="ID" prefWidth="100" fx:id="recipientID"/>
+            <TableColumn text="First Name" prefWidth="150" fx:id="firstName"/>
+            <TableColumn text="Last Name" prefWidth="150" fx:id="lastName"/>
+            <TableColumn text="Department" prefWidth="250" fx:id="department"/>
         </columns>
 
     </TableView>
 
     <VBox alignment="BOTTOM_CENTER">
-        <Button onAction="#handleBackButton" text="Back" prefHeight="40" prefWidth="80"/>
+        <Button onAction="#handleBackButton" text="Back" prefHeight="40" prefWidth="80" styleClass="backButton"/>
     </VBox>
 </VBox>

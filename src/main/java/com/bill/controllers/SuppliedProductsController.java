@@ -30,6 +30,6 @@ public class SuppliedProductsController extends WindowSetter implements Initiali
         suppliedProductsTable.getItems().setAll(DatabaseAccess.getSuppliedProducts());
     }
 
-    public void handleBackButton() { setWindow(450, 390, "/fxml/products.fxml", "Products Menu");
+    public void handleBackButton() { setWindow( "/fxml/suppliers.fxml", "Suppliers Menu");
     }
 }

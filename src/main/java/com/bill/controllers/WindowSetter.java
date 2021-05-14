@@ -22,16 +22,17 @@ public class WindowSetter extends Application {
 
     @Override
     public void start(Stage stage) {
+        setWindow("/fxml/login.fxml", "Sign In");
         DatabaseAccess.startConnection();
-        setWindow("/fxml/login.fxml", "Inventory Management System");
     }
 
 
     public void setWindow(String path, String title) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(path));
-            Scene scene = new Scene(root, 400, 300);
+            Scene scene = new Scene(root, 550, 700);
             stage.setTitle(title);
+            stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
         } catch (IOException exception) {
@@ -39,15 +40,17 @@ public class WindowSetter extends Application {
         }
     }
 
-    public void setWindow(int w, int h, String path, String title) {
+    public void setWindow(int height, int width, String path, String title) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(path));
-            Scene scene = new Scene(root, w, h);
+            Scene scene = new Scene(root, width, height);
             stage.setTitle(title);
+            stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
         } catch (IOException exception) {
             actionTarget.setText("Error opening window");
         }
     }
+
 }

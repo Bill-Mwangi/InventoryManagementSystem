@@ -25,27 +25,31 @@ public class NewUserController extends WindowSetter implements Connect {
         if (confirmField.getText().equals(passwordField.getText())) {
             try {
                 Connection con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-                createUser = con.prepareStatement("INSERT INTO inventory.user(FirstName, LastName, Email, Password) VALUES(?,?,?,?)");
+                createUser = con.prepareStatement("INSERT INTO inventory.user(first_name, last_name, email, password) VALUES(?,?,?,?)");
                 createUser.setString(1, FnameField.getText());
                 createUser.setString(2, LnameField.getText());
                 createUser.setString(3, emailField.getText());
                 createUser.setString(4, DigestUtils.sha256Hex(passwordField.getText()));
-                int rowCount = createUser.executeUpdate();
 
-                if (rowCount == 1)
-                    actionTarget.setText("New user added.");
-                else
+                if (createUser.execute()) {
                     actionTarget.setText("Trouble adding new user.");
-                FnameField.clear();
-                LnameField.clear();
-                emailField.clear();
-                passwordField.clear();
-                confirmField.clear();
+                } else {
+                    actionTarget.setText("New user added.");
+                    FnameField.clear();
+                    LnameField.clear();
+                    emailField.clear();
+                    passwordField.clear();
+                    confirmField.clear();
+                    setWindow( "/fxml/login.fxml", "Inventory Management System");
+                }
+
             } catch (SQLException exception) {
                 actionTarget.setText("Error connecting to database.");
             }
         } else
             actionTarget.setText("The passwords do not match.");
+            passwordField.clear();
+            confirmField.clear();
     }
 
     public void handleBackButton() {

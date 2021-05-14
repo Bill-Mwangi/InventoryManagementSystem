@@ -2,7 +2,6 @@ package com.bill.controllers;
 
 import com.bill.DatabaseAccess;
 import com.bill.Product;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -35,6 +34,6 @@ public class AvailableProductsController extends WindowSetter implements Initial
         productsTable.getItems().setAll(DatabaseAccess.showAvailableProducts());
     }
 
-    public void handleBackButton() { setWindow(450, 390,"/fxml/products.fxml", "Products Menu");
+    public void handleBackButton() { setWindow("/fxml/products.fxml", "Products Menu");
     }
 }

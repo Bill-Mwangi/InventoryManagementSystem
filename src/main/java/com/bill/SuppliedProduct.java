@@ -4,11 +4,11 @@ import java.sql.Date;
 import java.sql.Time;
 
 public class SuppliedProduct {
-    private String product_name;
-    private String supplierName;
-    private int quantity;
-    private Date date;
-    private Time time;
+    private final String product_name;
+    private final String supplierName;
+    private final int quantity;
+    private final Date date;
+    private final Time time;
 
     public SuppliedProduct(String productName, String supplierName, int quantity, Date date, Time time) {
         this.product_name = productName;

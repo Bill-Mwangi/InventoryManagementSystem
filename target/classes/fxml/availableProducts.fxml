@@ -3,21 +3,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.geometry.Insets?>
 <VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.bill.controllers.AvailableProductsController">
-    <padding><Insets bottom="25" left="25" right="25" top="25" /> </padding>
+      fx:controller="com.bill.controllers.AvailableProductsController" stylesheets="@../css/styles.css"
+        styleClass="root">
 
-    <TableView fx:id="productsTable">
+    <TableView fx:id="productsTable" styleClass="table">
         <columns>
-            <TableColumn text="Product ID" prefWidth="100" fx:id="productID"/>
-            <TableColumn text="Product Name" prefWidth="150" fx:id="productName"/>
-            <TableColumn text="Description" prefWidth="200" fx:id="description"/>
+            <TableColumn text="ID" prefWidth="100" fx:id="productID"/>
+            <TableColumn text="Product Name" prefWidth="190" fx:id="productName"/>
+            <TableColumn text="Description" prefWidth="260" fx:id="description"/>
             <TableColumn text="Quantity" prefWidth="100" fx:id="quantity"/>
         </columns>
     </TableView>
 
     <VBox alignment="BOTTOM_CENTER">
-        <Button onAction="#handleBackButton" text="Back" prefHeight="40" prefWidth="80"/>
+        <Button onAction="#handleBackButton" text="Back" prefHeight="40" prefWidth="80" styleClass="backButton"/>
     </VBox>
 </VBox>

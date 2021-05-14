@@ -14,6 +14,7 @@ import java.sql.*;
 
 public class LoginController extends WindowSetter implements Connect {
     private static PreparedStatement selectPassHash;
+    private static Connection con;
     @FXML private Text actionTarget;
     @FXML private PasswordField passwordField;
     @FXML private TextField emailField;
@@ -21,8 +22,8 @@ public class LoginController extends WindowSetter implements Connect {
     @FXML
     public void handleSignInButtonAction() {
         try {
-            Connection con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            selectPassHash = con.prepareStatement("SELECT Password from inventory.user where Email = ?");
+            con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            selectPassHash = con.prepareStatement("SELECT password from inventory.user where email = ?");
             } catch (SQLException exception) {
             actionTarget.setText("Error connecting to database.");
         }
@@ -34,7 +35,7 @@ public class LoginController extends WindowSetter implements Connect {
             if (resultSet.next()) {
                 String userPassHash = DigestUtils.sha256Hex(passwordField.getText());
                 if (userPassHash.equalsIgnoreCase(resultSet.getString("Password"))) {
-                    setWindow("/fxml/index.fxml", "Inventory Management System");
+                    setWindow( "/fxml/index.fxml", "Inventory Management System");
                     DatabaseAccess.startConnection();
                 }
                 else actionTarget.setText("Invalid password");
@@ -43,9 +44,16 @@ public class LoginController extends WindowSetter implements Connect {
 
         } catch (Exception exception) {
             exception.printStackTrace();
+        } finally {
+            try {
+                emailField.clear();
+                passwordField.clear();
+                selectPassHash.close();
+                con.close();
+            } catch (SQLException ex) {
+                actionTarget.setText("Error closing database");
+            }
         }
-        emailField.clear();
-        passwordField.clear();
     }
 
     public void handleForgotPassword() {

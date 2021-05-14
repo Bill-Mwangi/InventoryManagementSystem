@@ -4,17 +4,15 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.geometry.Insets?>
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.bill.controllers.RecipientController">
+<GridPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.bill.controllers.RecipientController" stylesheets="@../css/styles.css" styleClass="root">
     <padding> <Insets top="25" bottom="25" right="25" left="25 "/> </padding>
 
-    <TilePane prefHeight="200.0" prefWidth="350.0" vgap="10" hgap="10">
-        <Button text="Add Recipient" onAction="#handleAddRecipient" prefHeight="120" prefWidth="110"/>
-        <Button text="Edit Recipients" onAction="#handleEditRecipient" prefWidth="110" prefHeight="120"/>
-        <Button text="All Recipients" onAction="#handleAllRecipients" prefHeight="120" prefWidth="110"/>
-    </TilePane>
+    <Button text="Add Recipient" onAction="#handleAddRecipient" GridPane.rowIndex="0" styleClass="wideTile"/>
+    <Button text="Edit Recipients" onAction="#handleEditRecipient" GridPane.rowIndex="1" styleClass="wideTile"/>
+    <Button text="All Recipients" onAction="#handleAllRecipients" GridPane.rowIndex="2" styleClass="wideTile"/>
 
-    <VBox alignment="BOTTOM_CENTER">
-        <Button onAction="#handleBackButton" text="Back" prefHeight="40" prefWidth="80"/>
+    <VBox alignment="BOTTOM_CENTER" GridPane.rowIndex="4">
+        <Button onAction="#handleBackButton" text="Back" prefHeight="40" prefWidth="80" styleClass="backButton"/>
     </VBox>
-</VBox>
+</GridPane>

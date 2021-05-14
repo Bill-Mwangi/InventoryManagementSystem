@@ -33,7 +33,7 @@ public class AllRecipientsController extends WindowSetter implements Initializab
     }
 
     public void handleBackButton() {
-        setWindow("/fxml/recipients.fxml", "Recipients Menu");
+        setWindow( "/fxml/recipients.fxml", "Recipients Menu");
 
     }
 }

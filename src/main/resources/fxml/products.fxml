@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<?import javafx.geometry.Insets?>
-<VBox xmlns="http://javafx.com/javafx/10.0.2-internal"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bill.controllers.ProductsController">
+<GridPane xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="com.bill.controllers.ProductsController" stylesheets="@../css/styles.css">
     <padding> <Insets bottom="25" left="25" right="25" top="25" /> </padding>
 
-    <FlowPane prefHeight="300.0" prefWidth="400.0" vgap="10" hgap="10">
+    <Button onAction="#addProduct" text="New Product" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="tile"/>
+    <Button onAction="#updateProduct" text="Update Product" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="tile"/>
+    <Button onAction="#assignProduct" text="Assign Product" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="tile"/>
+    <Button onAction="#availableProducts" text="Available products" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="tile"/>
+    <Button onAction="#unavailableProducts" text="Unavailable products" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="tile"/>
+    <Button onAction="#assignedProducts" text="Assigned products" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="tile"/>
 
-        <Button onAction="#addProduct" text="New Product" prefWidth="120" prefHeight="120"/>
-        <Button onAction="#updateProduct" text="Update Product" prefWidth="130" prefHeight="120"/>
-        <Button onAction="#assignProduct" text="Assign Product" prefWidth="120" prefHeight="120"/>
-        <Button onAction="#availableProducts" text="Available products" prefWidth="120" prefHeight="120"/>
-        <Button onAction="#unavailableProducts" text="Unavailable products" prefWidth="130" prefHeight="120"/>
-        <Button onAction="#assignedProducts" text="Assigned products" prefWidth="120" prefHeight="120"/>
-    </FlowPane>
-
-    <VBox alignment="BOTTOM_CENTER">
-        <Button onAction="#handleBackButton" text="Back" prefHeight="40" prefWidth="80"/>
+    <VBox alignment="BOTTOM_CENTER" GridPane.rowIndex="4" GridPane.columnSpan="2">
+        <Button onAction="#handleBackButton" text="Back" styleClass="backButton" />
     </VBox>
-</VBox>
+</GridPane>

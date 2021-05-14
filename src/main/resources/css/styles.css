@@ -1,0 +1,78 @@
+.root{
+    -fx-padding: 25px;
+    -fx-background-color: #f0ffff;
+    /*-fx-background-image: url("images/brush.jpg");*/
+    -fx-font-size: 15pt;
+    -fx-font-family: Consolas, "Liberation Sans", sans-serif;
+    -fx-vgap: 10px;
+    -fx-hgap: 10px;
+}
+
+.title {
+    -fx-alignment: center;
+    -fx-padding: 0px, 0px, 50px;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Times New Roman";
+}
+
+.backButton {
+    -fx-border-radius: 30px;
+    -fx-alignment: center;
+    -fx-pref-height: 30px;
+}
+
+.backButton:hover {
+    -fx-background-color: turquoise;
+}
+
+.backButton > .text {
+    -fx-font-size: 13px;
+}
+
+.form {
+    -fx-alignment: center;
+    -fx-padding: 25px;
+    -fx-vgap: 10px;
+    -fx-hgap: 10px;
+    -fx-pref-width: 500px;
+    -fx-pref-height: 600px;
+}
+
+.flowpane{
+    -fx-alignment: center;
+    -fx-hgap: 10px;
+    -fx-vgap:10px;
+    -fx-pref-height: 230px;
+}
+
+.tile {
+    -fx-pref-height: 120;
+    -fx-pref-width: 245;
+    -fx-background-color: white;
+    -fx-border-color: darkturquoise;
+    -fx-border-radius: 30px;
+}
+
+.wideTile {
+    -fx-border-color: darkturquoise;
+    -fx-pref-height: 150;
+    -fx-pref-width: 500;
+    -fx-background-color: white;
+    -fx-border-radius: 30px;
+}
+
+.wideTile:hover{
+    -fx-background-color: turquoise;
+    -fx-background-radius: 30px;
+}
+
+.tile:hover{
+    -fx-background-color: turquoise;
+    -fx-background-radius: 30px;
+}
+
+.table{
+    -fx-pref-width: 700;
+    -fx-pref-height: 700;
+}

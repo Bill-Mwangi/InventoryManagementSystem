@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -33,6 +34,6 @@ public class UnavailableProductsController extends WindowSetter implements Initi
         productsTable.getItems().setAll(DatabaseAccess.showUnavailableProducts());
     }
 
-    public void handleBackButton() { setWindow(450, 390, "/fxml/products.fxml", "Products Menu");
+    public void handleBackButton() { setWindow( "/fxml/products.fxml", "Products Menu");
     }
 }

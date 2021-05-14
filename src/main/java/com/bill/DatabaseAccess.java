@@ -37,7 +37,7 @@ public class DatabaseAccess implements Connect {
             selectSuppliedProducts = con.prepareStatement("SELECT * FROM inventory.supplied_view");
             selectAllSuppliers = con.prepareStatement("SELECT * FROM inventory.supplier");
             selectAllRecipients = con.prepareStatement("SELECT * FROM inventory.recipient");
-            insertNewProducts = con.prepareCall("{CALL add_product(?, ?, ?, ?)}");
+            insertNewProducts = con.prepareCall("{CALL add_proaduct(?, ?, ?, ?)}");
             insertNewSuppliers = con.prepareStatement("INSERT INTO inventory.supplier(supplier_name, description, products) VALUES( ?,?,?)");
             insertNewRecipient = con.prepareStatement("INSERT INTO inventory.recipient(first_name, last_name, department) VALUES(?, ?, ?)");
             productCount = con.prepareStatement("SELECT quantity FROM inventory.product WHERE product_id = ?");
@@ -306,7 +306,7 @@ public class DatabaseAccess implements Connect {
                 insertNewProducts.close();
                 selectAllRecipients.close();
                 selectAllSuppliers.close();
-                resultSet.close();
+                if (resultSet != null) resultSet.close();
                 con.close();
             } catch(SQLException exception) {
                 JOptionPane.showMessageDialog(null,"Error in closing the database",
