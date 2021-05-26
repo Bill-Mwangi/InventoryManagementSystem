@@ -37,15 +37,15 @@ public class DatabaseAccess implements Connect {
             selectSuppliedProducts = con.prepareStatement("SELECT * FROM inventory.supplied_view");
             selectAllSuppliers = con.prepareStatement("SELECT * FROM inventory.supplier");
             selectAllRecipients = con.prepareStatement("SELECT * FROM inventory.recipient");
-            insertNewProducts = con.prepareCall("{CALL add_proaduct(?, ?, ?, ?)}");
+            insertNewProducts = con.prepareCall("{CALL add_product(?, ?, ?, ?)}");
             insertNewSuppliers = con.prepareStatement("INSERT INTO inventory.supplier(supplier_name, description, products) VALUES( ?,?,?)");
             insertNewRecipient = con.prepareStatement("INSERT INTO inventory.recipient(first_name, last_name, department) VALUES(?, ?, ?)");
-            productCount = con.prepareStatement("SELECT quantity FROM inventory.product WHERE product_id = ?");
+            productCount = con.prepareStatement("SELECT quantity FROM inventory.product WHERE product_name = ?");
             updateProduct = con.prepareCall("{CALL update_product(?, ?, ?, ?)}");
             updateSupplyQuantity = con.prepareStatement("UPDATE inventory.supplier SET quantity = ? WHERE supplier_id = ?");
             availableProducts = con.prepareStatement("SELECT * FROM product WHERE quantity > 0");
             unavailableProducts = con.prepareStatement("SELECT * FROM product WHERE quantity = 0");
-            assignProcedure = con.prepareCall("{CALL assign_product(?, ?, ?, ?)}");
+            assignProcedure = con.prepareCall("{CALL assign_product(?, ?, ?, ?, ?)}");
         } catch (SQLException exception) {
             errorAlerts("Database error", "Error connecting to database\n"+
                     exception.getMessage());
@@ -56,7 +56,6 @@ public class DatabaseAccess implements Connect {
         if (!isConnected) {
             databaseNotConnectedAlert();
         }
-
         List<AssignedProduct> results = new ArrayList<>();
         try {
             resultSet = selectAssignedProducts.executeQuery();
@@ -73,6 +72,22 @@ public class DatabaseAccess implements Connect {
                     exception.getMessage());
         }
         return results;
+    }
+    public static List<Product> getAvailableProducts() {
+        if (!isConnected) {
+            databaseNotConnectedAlert();
+        }
+        List<Product> products = new ArrayList<>();
+        try {
+            resultSet = availableProducts.executeQuery();
+            while (resultSet.next()) {
+                products.add(new Product(resultSet.getInt("product_id"), resultSet.getString("product_name")));
+            }
+        } catch(SQLException exception) {
+            errorAlerts("Database error", "Error in getting list of assigned products\n"+
+                    exception.getMessage());
+        }
+    return products;
     }
     public static List<SuppliedProduct> getSuppliedProducts() {
         if (!isConnected) {
@@ -113,6 +128,34 @@ public class DatabaseAccess implements Connect {
         }
         return results;
     }
+
+    public static List <String> getSupplierNames() {
+        List<Suppliers> suppliers = getAllSuppliers();
+        List <String> names = new ArrayList<>();
+        for (Suppliers supplier : suppliers) {
+            names.add(supplier.getSupplierName());
+        }
+        return names;
+    }
+    public static List<String> getProductNames(){
+        List<Product> products = getAvailableProducts();
+        List <String> names = new ArrayList<>();
+        for (Product product : products) {
+            names.add(product.getProductName());
+        }
+        return names;
+    }public static List<String> getRecipientNames() {
+        List<Recipient> recipients = getAllRecipients();
+        List<String> names = new ArrayList<>();
+        for (Recipient recipient : recipients) {
+            String firstName = recipient.getFirstName();
+            String lastName = recipient.getLastName();
+            names.add(firstName +" " +lastName);
+        }
+        return names;
+    }
+    
+
     public static List<Recipient> getAllRecipients() {
         if (!isConnected) {
             databaseNotConnectedAlert();
@@ -130,11 +173,10 @@ public class DatabaseAccess implements Connect {
         } catch (SQLException exception) {
             errorAlerts("Database error", "Error in getting list of recipients\n"+
                     exception.getMessage());
-            
         }
         return results;
     }
-    public static String addProduct(Product product, int supplierID) throws IllegalStateException {
+    public static String addProduct(Product product, String supplierName) throws IllegalStateException {
         if (!isConnected) {
             databaseNotConnectedAlert();
         }
@@ -142,7 +184,7 @@ public class DatabaseAccess implements Connect {
             insertNewProducts.setString(1, product.getProductName());
             insertNewProducts.setString(2, product.getDescription());
             insertNewProducts.setInt(3, product.getQuantity());
-            insertNewProducts.setInt(4, supplierID);
+            insertNewProducts.setString(4, supplierName);
             rowsAffected = insertNewProducts.executeUpdate();
             message = "Product added";
         } catch (SQLException exception){
@@ -184,22 +226,22 @@ public class DatabaseAccess implements Connect {
         }
         return message;
     }
-    public static String updateProducts(int productID, int quantity, int supplierID) {
+    public static String updateProducts(String productName, int quantity, String supplierName) {
         if (!isConnected) {
             databaseNotConnectedAlert();
         }
         try {
-            productCount.setInt(1, productID);
+            productCount.setString(1, productName);
             resultSet = productCount.executeQuery();
             if (resultSet.next()) {
                 int availableQuantity = resultSet.getInt("quantity");
                 int newQuantity = quantity + availableQuantity;
-                updateProduct.setInt(1, productID);
-                updateProduct.setInt(2, supplierID);
+                updateProduct.setString(1, productName);
+                updateProduct.setString(2, supplierName);
                 updateProduct.setInt(3, quantity);
                 updateProduct.setInt(4, newQuantity);
                 rowsAffected = updateProduct.executeUpdate();
-                message = rowsAffected +" product has been updated.";
+                message = quantity +" product" +(quantity>1?"s":"") +" has been added.";
             }
         } catch (SQLException exception) {
             errorAlerts("Database Error", "Error updating products\n"+
@@ -207,28 +249,31 @@ public class DatabaseAccess implements Connect {
         }
         return message;
     }
-    public static String assignProduct(int productID, int recipientID, int quantity) {
+    public static String assignProduct(String productName, String recipientName, int quantity) {
         if (!isConnected) {
             databaseNotConnectedAlert();
         }
         try {
-            productCount.setInt(1, productID);
+            productCount.setString(1, productName);
             resultSet = productCount.executeQuery();
-            assignProcedure.setInt(1, productID);
-            assignProcedure.setInt(2, recipientID);
+            String[] names = recipientName.split(" ");
+            assignProcedure.setString(1, productName);
+            assignProcedure.setString(2, names[0]);
+            assignProcedure.setString(3, names[1]);
+
             if (resultSet.next()) {
                 int availableQuantity = resultSet.getInt("quantity");
                 if ((availableQuantity - quantity) >= 0) {
-                    assignProcedure.setInt(3, quantity);
+                    assignProcedure.setInt(4, quantity);
                     int newQuantity = availableQuantity - quantity;
-                    assignProcedure.setInt(4, newQuantity);
+                    assignProcedure.setInt(5, newQuantity);
                     rowsAffected = assignProcedure.executeUpdate();
-                    message =  (recipientID + " has been assigned " +quantity +" products");
+                    message =  (recipientName + " has been assigned " +quantity +" products");
                 } else {
-                    assignProcedure.setInt(3, availableQuantity);
-                    assignProcedure.setInt(4, 0);
+                    assignProcedure.setInt(4, availableQuantity);
+                    assignProcedure.setInt(5, 0);
                     rowsAffected = assignProcedure.executeUpdate();
-                    message = (recipientID + " has been assigned " + availableQuantity + " products");
+                    message = (recipientName + " has been assigned " + availableQuantity + " products");
                 }
             }
         } catch (SQLException exception) {

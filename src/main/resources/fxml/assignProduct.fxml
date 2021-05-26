@@ -7,10 +7,10 @@
       fx:controller="com.bill.controllers.AssignProductController" stylesheets="@../css/styles.css">
 
     <GridPane styleClass="form">
-        <Label text="Product ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-        <TextField fx:id="productIDField" GridPane.columnIndex="1" GridPane.rowIndex="0" prefHeight="1"/>
-        <Label text="Recipient ID:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-        <TextField fx:id="recipientIDField" GridPane.rowIndex="1" GridPane.columnIndex="1" prefHeight="1"/>
+        <Label text="Product:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="productField" GridPane.columnIndex="1" GridPane.rowIndex="0" prefHeight="1"/>
+        <Label text="Recipient:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="recipientField" GridPane.rowIndex="1" GridPane.columnIndex="1" prefHeight="1"/>
         <Label text="Quantity:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
         <TextField fx:id="quantityField" GridPane.rowIndex="2" GridPane.columnIndex="1" prefHeight="1"/>
         <Button text="submit" alignment="CENTER" GridPane.columnIndex="1"

@@ -3,9 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
-
 <VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-          fx:controller="com.bill.controllers.AddSupplierController" styleClass="root" stylesheets="@../css/styles.css">
+      fx:controller="com.bill.controllers.AddSupplierController" styleClass="root" stylesheets="@../css/styles.css">
 
     <GridPane styleClass="form">
         <Label text="Supplier Name:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>

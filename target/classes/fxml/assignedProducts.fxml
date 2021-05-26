@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import javafx.scene.layout.VBox?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.bill.controllers.AssignedProductsController" stylesheets="@../css/styles.css"
-        styleClass="root">
+      styleClass="root">
 
     <TableView fx:id="assignedProductsTable" styleClass="table">
         <columns>

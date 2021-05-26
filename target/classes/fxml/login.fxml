@@ -2,8 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-
+<?import javafx.scene.text.Text?>
 <VBox styleClass="root" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bill.controllers.LoginController">
     <GridPane alignment="CENTER" styleClass="form" stylesheets="@../css/styles.css">
         <Text styleClass="title" text="Inventory Management System" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0">

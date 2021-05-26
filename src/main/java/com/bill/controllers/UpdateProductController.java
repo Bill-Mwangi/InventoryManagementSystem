@@ -2,24 +2,29 @@ package com.bill.controllers;
 
 import com.bill.DatabaseAccess;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import org.controlsfx.control.textfield.TextFields;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class UpdateProductController extends WindowSetter implements KeyListener {
-    @FXML TextField productIdField;
+public class UpdateProductController extends WindowSetter implements Initializable {
+    @FXML TextField productField;
     @FXML TextField quantityField;
-    @FXML TextField supplierIDField;
+    @FXML TextField supplierField;
     @FXML Text confirmation;
 
     public void handleSubmitButton() {
-        int productID = Integer.parseInt(productIdField.getText());
+        String productName = productField.getText();
         int quantity = Integer.parseInt(quantityField.getText());
-        int supplierID = Integer.parseInt(supplierIDField.getText());
-        String message = DatabaseAccess.updateProducts(productID, quantity, supplierID);
+        String supplierName = supplierField.getText();
+        String message = DatabaseAccess.updateProducts(productName, quantity, supplierName);
         confirmation.setText(message);
+        productField.clear();
+        quantityField.clear();
+        supplierField.clear();
     }
 
     public void handleBackButton() {
@@ -27,20 +32,8 @@ public class UpdateProductController extends WindowSetter implements KeyListener
     }
 
     @Override
-    public void keyTyped(KeyEvent event) {
-        String str = "";
-        str += event.getKeyChar();
-        String query = "SELECT * FROM  WHERE LIKE " + str + " LIMIT 5;";
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        TextFields.bindAutoCompletion(productField, DatabaseAccess.getProductNames());
+        TextFields.bindAutoCompletion(supplierField, DatabaseAccess.getSupplierNames());
     }
 }

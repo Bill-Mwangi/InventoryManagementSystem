@@ -2,7 +2,7 @@ package com.bill;
 
 public class Product {
     private int productID;
-    private String productName;
+    private final String productName;
     private String description;
     private int quantity;
 
@@ -21,6 +21,10 @@ public class Product {
         this.productID = productID;
         this.productName = productName;
         this.quantity = quantity;
+    }
+    public Product(int productID, String productName) {
+        this.productID = productID;
+        this.productName = productName;
     }
 
     public int getProductID() {

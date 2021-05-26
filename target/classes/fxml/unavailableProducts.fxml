@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import javafx.scene.layout.VBox?>
 <VBox prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../css/styles.css"
       xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.bill.controllers.UnavailableProductsController">
@@ -10,7 +9,7 @@
 
     <TableView fx:id="productsTable" styleClass="table">
         <columns>
-            <TableColumn fx:id="ID" prefWidth="70" text="Product ID" />
+            <TableColumn fx:id="productID" prefWidth="70" text="Product ID" />
             <TableColumn fx:id="productName" prefWidth="150" text="Product Name" />
             <TableColumn fx:id="description" prefWidth="250" text="Description" />
             <TableColumn fx:id="quantity" prefWidth="100" text="Quantity" />

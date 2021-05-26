@@ -3,17 +3,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
-
 <GridPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
           fx:controller="com.bill.controllers.UpdateProductController"
           stylesheets="@../css/styles.css" styleClass="root">
 
     <Text text="Adding to an existing product" GridPane.rowIndex="0"
           GridPane.columnSpan="2"/>
-    <Label text="Product ID:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-    <TextField fx:id="productIdField" GridPane.rowIndex="3" GridPane.columnIndex="1" prefHeight="1"/>
-    <Label text="Supplier ID:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-    <TextField fx:id="supplierIDField" GridPane.columnIndex="1" GridPane.rowIndex="4" prefHeight="1"/>
+    <Label text="Product:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+    <TextField fx:id="productField" GridPane.rowIndex="3" GridPane.columnIndex="1" prefHeight="1"/>
+    <Label text="Supplier:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+    <TextField fx:id="supplierField" GridPane.columnIndex="1" GridPane.rowIndex="4" prefHeight="1"/>
     <Label text="Quantity:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
     <TextField fx:id="quantityField" GridPane.rowIndex="5" GridPane.columnIndex="1" prefHeight="1"/>
 

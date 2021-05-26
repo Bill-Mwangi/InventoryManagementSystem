@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<?import javafx.geometry.Insets?>
-
+<?import javafx.scene.text.Text?>
 <GridPane xmlns="http://javafx.com/javafx"
           fx:controller="com.bill.controllers.NewUserController"
           xmlns:fx="http://javafx.com/fxml"

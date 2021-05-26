@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
-
-<?import javafx.scene.control.Button?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.*?>
 <GridPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.bill.controllers.RecipientController" stylesheets="@../css/styles.css" styleClass="root">
+          fx:controller="com.bill.controllers.RecipientController" stylesheets="@../css/styles.css" styleClass="root">
     <padding> <Insets top="25" bottom="25" right="25" left="25 "/> </padding>
 
     <Button text="Add Recipient" onAction="#handleAddRecipient" GridPane.rowIndex="0" styleClass="wideTile"/>
