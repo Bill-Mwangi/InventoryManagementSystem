@@ -11,8 +11,7 @@
         <TableColumn text="Product" fx:id="product_name" prefWidth="175"/>
         <TableColumn text="Supplier" fx:id="supplier_name" prefWidth="175"/>
         <TableColumn text="Quantity" fx:id="quantity" prefWidth="100"/>
-        <TableColumn text="Date" fx:id="date" prefWidth="100"/>
-        <TableColumn text="Time" fx:id="time" prefWidth="100"/>
+        <TableColumn text="Time" fx:id="time" prefWidth="200"/>
     </columns>
 
 </TableView>

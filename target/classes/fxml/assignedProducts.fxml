@@ -13,8 +13,7 @@
             <TableColumn text="Fname" fx:id="first_name" prefWidth="100"/>
             <TableColumn text="Lname" fx:id="last_name" prefWidth="100"/>
             <TableColumn text="Quantity" fx:id="quantity" prefWidth="100"/>
-            <TableColumn text="Date" fx:id="date" prefWidth="100"/>
-            <TableColumn text="Time" fx:id="time" prefWidth="100"/>
+            <TableColumn text="Time" fx:id="time" prefWidth="200"/>
         </columns>
 
     </TableView>

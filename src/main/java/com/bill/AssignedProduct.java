@@ -1,23 +1,20 @@
 package com.bill;
 
-import java.sql.Date;
-import java.sql.Time;
+import java.sql.Timestamp;
 
 public class AssignedProduct {
     private final String product_name;
     private final String first_name;
     private final String last_name;
     private final int quantity;
-    private final Date date;
-    private final Time time;
+    private final Timestamp timestamp;
 
-    public AssignedProduct(String product_name, String first_name, String last_name, int quantity, Date date, Time time) {
+    public AssignedProduct(String product_name, String first_name, String last_name, int quantity,Timestamp timestamp) {
         this.product_name = product_name;
         this.first_name = first_name;
         this.last_name = last_name;
         this.quantity = quantity;
-        this.date = date;
-        this.time = time;
+        this.timestamp = timestamp;
     }
 
     public String getProduct_name() {
@@ -36,11 +33,7 @@ public class AssignedProduct {
         return quantity;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public Time getTime() {
-        return time;
+    public String getTime() {
+        return timestamp.toLocalDateTime().toString().replace("T", " ");
     }
 }

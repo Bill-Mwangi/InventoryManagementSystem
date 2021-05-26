@@ -64,8 +64,7 @@ public class DatabaseAccess implements Connect {
                         resultSet.getString("first_name"),
                         resultSet.getString("last_name"),
                         resultSet.getInt("quantity"),
-                        resultSet.getDate("date_assigned"),
-                        resultSet.getTime("date_assigned")));
+                        resultSet.getTimestamp("date_assigned")));
             }
         } catch (SQLException exception) {
             errorAlerts("Database error", "Error in getting list of assigned products\n"+
@@ -100,8 +99,7 @@ public class DatabaseAccess implements Connect {
                 results.add(new SuppliedProduct(resultSet.getString("product_name"),
                         resultSet.getString("supplier_name"),
                         resultSet.getInt("quantity"),
-                        resultSet.getDate("date_supplied"),
-                        resultSet.getTime("date_supplied")));
+                        resultSet.getTimestamp("date_supplied")));
             }
         } catch (SQLException exception) {
             errorAlerts("Database error", "Error in getting list of assigned products\n" +

@@ -2,13 +2,13 @@ package com.bill.model;
 
 import com.bill.Database;
 import com.bill.Product;
-import com.bill.dao.ProductsDao;
+
 import javax.swing.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductModel extends Database  {
+public class ProductModel extends Database {
    // @Override
     public static void addProduct(Product product, int supplierID) throws IllegalStateException {
         isConnected();

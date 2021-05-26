@@ -10,7 +10,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.sql.Time;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 
@@ -26,8 +25,6 @@ public class AssignedProductsController extends WindowSetter implements Initiali
     @FXML
     protected TableColumn<AssignedProduct, Integer> quantity;
     @FXML
-    protected TableColumn<AssignedProduct, Date> date;
-    @FXML
     protected TableColumn<AssignedProduct, Time> time;
 
     @Override
@@ -36,7 +33,6 @@ public class AssignedProductsController extends WindowSetter implements Initiali
         first_name.setCellValueFactory(new PropertyValueFactory<>("first_name"));
         last_name.setCellValueFactory(new PropertyValueFactory<>("last_name"));
         quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        date.setCellValueFactory(new PropertyValueFactory<>("date"));
         time.setCellValueFactory(new PropertyValueFactory<>("time"));
         assignedProductsTable.getItems().setAll(DatabaseAccess.getAssignedProducts());
     }
