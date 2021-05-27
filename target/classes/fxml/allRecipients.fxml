@@ -9,11 +9,10 @@
     <TableView fx:id="allRecipientsTable" styleClass="table">
         <columns>
             <TableColumn text="ID" prefWidth="100" fx:id="recipientID"/>
-            <TableColumn text="First Name" prefWidth="150" fx:id="firstName"/>
-            <TableColumn text="Last Name" prefWidth="150" fx:id="lastName"/>
-            <TableColumn text="Department" prefWidth="250" fx:id="department"/>
+            <TableColumn text="First Name" prefWidth="200" fx:id="firstName"/>
+            <TableColumn text="Last Name" prefWidth="200" fx:id="lastName"/>
+            <TableColumn text="Department" prefWidth="450" fx:id="department"/>
         </columns>
-
     </TableView>
 
     <VBox alignment="BOTTOM_CENTER">

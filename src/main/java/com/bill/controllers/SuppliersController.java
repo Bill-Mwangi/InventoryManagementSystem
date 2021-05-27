@@ -7,13 +7,13 @@ public class SuppliersController extends WindowSetter {
     }
 
     public void handleAllSuppliers() {
-        setWindow(700, 700, "/fxml/allSuppliers.fxml", "Suppliers List");
+        setWindow(700, 1000, "/fxml/allSuppliers.fxml", "Suppliers List");
     }
 
     public void handleBackButton() {
         setWindow( "/fxml/index.fxml", "Inventory Management System");
     }
 
-    public void listSuppliedProducts() {setWindow(700, 700, "/fxml/suppliedProducts.fxml", "Supplied Products");
+    public void listSuppliedProducts() {setWindow(700, 1000, "/fxml/suppliedProducts.fxml", "Supplied Products");
     }
 }

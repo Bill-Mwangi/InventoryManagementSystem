@@ -8,12 +8,11 @@
 
 <TableView fx:id="suppliedProductsTable" styleClass="table">
     <columns>
-        <TableColumn text="Product" fx:id="product_name" prefWidth="175"/>
-        <TableColumn text="Supplier" fx:id="supplier_name" prefWidth="175"/>
+        <TableColumn text="Product" fx:id="product_name" prefWidth="300"/>
+        <TableColumn text="Supplier" fx:id="supplier_name" prefWidth="300"/>
         <TableColumn text="Quantity" fx:id="quantity" prefWidth="100"/>
-        <TableColumn text="Time" fx:id="time" prefWidth="200"/>
+        <TableColumn text="Time" fx:id="time" prefWidth="250"/>
     </columns>
-
 </TableView>
 
 <VBox alignment="BOTTOM_CENTER">

@@ -9,8 +9,8 @@
     <TableView fx:id="productsTable" styleClass="table">
         <columns>
             <TableColumn text="ID" prefWidth="100" fx:id="productID"/>
-            <TableColumn text="Product Name" prefWidth="190" fx:id="productName"/>
-            <TableColumn text="Description" prefWidth="260" fx:id="description"/>
+            <TableColumn text="Product Name" prefWidth="300" fx:id="productName"/>
+            <TableColumn text="Description" prefWidth="450" fx:id="description"/>
             <TableColumn text="Quantity" prefWidth="100" fx:id="quantity"/>
         </columns>
     </TableView>

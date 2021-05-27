@@ -11,17 +11,17 @@ public class ProductsController extends WindowSetter {
     }
 
     public void availableProducts() {
-        setWindow(700, 700, "/fxml/availableProducts.fxml", "Available Products");
+        setWindow(700, 1000, "/fxml/availableProducts.fxml", "Available Products");
     }
 
     public void unavailableProducts() {
-        setWindow(700, 700, "/fxml/unavailableProducts.fxml", "Unavailable Products");
+        setWindow(700, 1000, "/fxml/unavailableProducts.fxml", "Unavailable Products");
     }
 
     public void handleBackButton() {
         setWindow( "/fxml/index.fxml", "Inventory Management System");
     }
 
-    public void assignedProducts() { setWindow(700, 700, "/fxml/assignedProducts.fxml", "Assigned Products");
+    public void assignedProducts() { setWindow(700, 1000, "/fxml/assignedProducts.fxml", "Assigned Products");
     }
 }

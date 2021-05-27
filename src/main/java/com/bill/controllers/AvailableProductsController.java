@@ -30,7 +30,6 @@ public class AvailableProductsController extends WindowSetter implements Initial
         productName.setCellValueFactory(new PropertyValueFactory<>("productName"));
         description.setCellValueFactory(new PropertyValueFactory<>("description"));
         quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-
         productsTable.getItems().setAll(DatabaseAccess.showAvailableProducts());
     }
 

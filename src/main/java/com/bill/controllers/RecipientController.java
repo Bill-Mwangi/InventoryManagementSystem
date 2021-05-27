@@ -6,7 +6,7 @@ public class RecipientController extends WindowSetter {
     }
 
     public void handleAllRecipients() {
-        setWindow(700, 700,"/fxml/allRecipients.fxml", "Recipients List");
+        setWindow(700, 1000,"/fxml/allRecipients.fxml", "Recipients List");
     }
 
     public void handleEditRecipient() {
